@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="text-center">Login</h1>
-        {{ valid }} - {{ user }}
+        <h1 class="text-center mt-5">Login</h1>
+        <!-- {{ valid }} - {{ user }} -->
         <v-form v-model="valid" ref="formRegister">
             <v-row justify="center">
                 <v-col cols="8" md="4">
@@ -61,8 +61,13 @@ export default {
                 this.user.email,
                 this.user.password
             )
-                .then((userCredential) => console.log(userCredential))
-                .catch((e) => console.log(e));
+                .then((userCredential) => {
+                    console.log(userCredential);
+                    this.$router.push("/crud");
+                })
+                .catch((e) => {
+                    console.log(e.code);
+                });
         },
         reset() {
             console.log("reset...");

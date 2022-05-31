@@ -3,8 +3,8 @@
 </template>
 <template>
     <div>
-        <h1 class="text-center">Login</h1>
-        {{ valid }} - {{ user }}
+        <h1 class="text-center mt-5">Register</h1>
+        <!-- {{ valid }} - {{ user }} -->
         <v-form v-model="valid" ref="formRegister">
             <v-row justify="center">
                 <v-col cols="8" md="4">
@@ -18,15 +18,10 @@
                         label="Email"
                         :rules="emailRules"
                     />
-                    <v-text-field
-                        v-model="user.password"
-                        label="Password"
-                        :rules="passwordRules"
-                    />
+                    <v-text-field v-model="user.password" label="Password" />
                     <v-text-field
                         v-model="user.repassword"
                         label="Repassword"
-                        :rules="repasswordRules"
                     />
                     <v-btn
                         color="primary"
@@ -63,15 +58,15 @@ export default {
                     /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(v) ||
                     "Formato de email incorrecto",
             ],
-            passwordRules: [
-                (v) => !!v || "No existe",
-                (v) => (v && v.length > 5) || "Email sobre 6 carácteres",
-            ],
-            repasswordRules: [
-                (v) => !!v || "No existe",
-                (v) =>
-                    v === this.user.password || "No coinciden las contraseñas",
-            ],
+            // passwordRules: [
+            //     (v) => !!v || "No existe",
+            //     (v) => (v && v.length > 5) || "Email sobre 6 carácteres",
+            // ],
+            // repasswordRules: [
+            //     (v) => !!v || "No existe",
+            //     (v) =>
+            //         v === this.user.password || "No coinciden las contraseñas",
+            // ],
             nameRules: [(v) => !!v || "No existe"],
         };
     },
@@ -84,8 +79,19 @@ export default {
                     this.user.password
                 );
                 console.log(userCredential);
+                this.$router.push("/crud");
             } catch (error) {
-                console.log(error);
+                console.log(error.code);
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        alert("El correo ya está siendo utilizado");
+                        break;
+                    case "auth/weak-password":
+                        alert("Contraseña minimo 6 carácteres");
+                        break;
+                    default:
+                        alert("Falla de servidor");
+                }
             }
         },
         reset() {
