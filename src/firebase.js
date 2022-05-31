@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB3CisQ4RXjEpQ2lLrUyGIJFDWz4eAESEg",
@@ -12,6 +13,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app); //database
 
 const currentUserPromise = () =>
     new Promise((resolve, reject) => {
@@ -24,4 +26,4 @@ const currentUserPromise = () =>
         );
     });
 
-export { auth, currentUserPromise };
+export { auth, currentUserPromise, db };

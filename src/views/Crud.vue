@@ -105,7 +105,12 @@ export default {
         };
     },
     methods: {
-        ...mapActions(["add_dessert", "delete_dessert", "update_dessert"]),
+        ...mapActions([
+            "add_dessert",
+            "delete_dessert",
+            "update_dessert",
+            "get_desserts",
+        ]),
         addDessertForm() {
             this.add_dessert({ ...this.dessert });
         },
@@ -125,6 +130,9 @@ export default {
     },
     computed: {
         ...mapState(["desserts"]),
+    },
+    created() {
+        this.get_desserts();
     },
 };
 </script>
