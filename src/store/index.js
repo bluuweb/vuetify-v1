@@ -64,6 +64,7 @@ export default new Vuex.Store({
                 await addDoc(collection(db, "desserts"), {
                     name: dessert.name,
                     calories: dessert.calories,
+                    uid: auth.currentUser.uid,
                 });
             } catch (error) {
                 console.log(error);
