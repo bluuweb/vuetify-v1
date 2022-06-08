@@ -1,15 +1,9 @@
 <template>
-  <hello-world />
+    <div>
+        <h1 class="text-center">CHAT</h1>
+    </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
-  export default {
-    name: 'Home',
-
-    components: {
-      HelloWorld,
-    },
-  }
+export default {};
 </script>

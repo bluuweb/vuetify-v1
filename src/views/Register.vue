@@ -79,7 +79,7 @@ export default {
                     this.user.password
                 );
                 console.log(userCredential);
-                this.$router.push("/crud");
+                this.$router.push("/");
             } catch (error) {
                 console.log(error.code);
                 switch (error.code) {

@@ -63,7 +63,7 @@ export default {
             )
                 .then((userCredential) => {
                     console.log(userCredential);
-                    this.$router.push("/crud");
+                    this.$router.push("/");
                 })
                 .catch((e) => {
                     console.log(e.code);
